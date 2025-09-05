@@ -175,43 +175,56 @@ import { User } from '../../models/user.model';
               </div>
             </div>
             
-            <div class="divide-y divide-gray-200/50">
-              <div *ngFor="let transaction of transactions" class="px-8 py-6 hover:bg-gray-50/50 transition-colors duration-200">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center space-x-4">
-                    <div class="flex-shrink-0">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b border-gray-200/50">
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Type</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Description</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Category</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Date</th>
+                    <th class="px-6 py-4 text-right text-sm font-semibold text-gray-900">Amount</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200/50">
+                  <tr *ngFor="let transaction of transactions" class="hover:bg-gray-50/50 transition-colors duration-200">
+                    <td class="px-6 py-4">
+                      <div class="flex items-center space-x-3">
+                        <div 
+                          class="w-8 h-8 rounded-lg flex items-center justify-center shadow-sm"
+                          [class]="transaction.amount > 0 ? 'bg-gradient-to-r from-green-400 to-emerald-500' : 'bg-gradient-to-r from-red-400 to-rose-500'"
+                        >
+                          <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path *ngIf="transaction.amount > 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
+                            <path *ngIf="transaction.amount <= 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path>
+                          </svg>
+                        </div>
+                        <span class="px-2 py-1 bg-gray-100 rounded-lg font-medium text-sm">{{ transaction.type | titlecase }}</span>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4">
+                      <div class="text-sm font-semibold text-gray-900">{{ transaction.description }}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                      <span class="text-sm text-blue-600 font-medium">{{ transaction.category | titlecase }}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                      <div class="text-sm text-gray-600">
+                        <div>{{ transaction.date | date:'MMM d, y' }}</div>
+                        <div class="text-xs text-gray-500">{{ transaction.date | date:'shortTime' }}</div>
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 text-right">
                       <div 
-                        class="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg"
-                        [class]="transaction.amount > 0 ? 'bg-gradient-to-r from-green-400 to-emerald-500' : 'bg-gradient-to-r from-red-400 to-rose-500'"
+                        class="text-lg font-bold"
+                        [class]="transaction.amount > 0 ? 'text-green-600' : 'text-red-600'"
                       >
-                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path *ngIf="transaction.amount > 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
-                          <path *ngIf="transaction.amount <= 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path>
-                        </svg>
+                        {{ transaction.amount > 0 ? '+' : '' }}\${{ Math.abs(transaction.amount).toFixed(2) }}
                       </div>
-                    </div>
-                    <div class="space-y-1">
-                      <div class="text-lg font-semibold text-gray-900">{{ transaction.description }}</div>
-                      <div class="flex items-center space-x-2 text-sm text-gray-600">
-                        <span class="px-2 py-1 bg-gray-100 rounded-lg font-medium">{{ transaction.type | titlecase }}</span>
-                        <span>•</span>
-                        <span>{{ transaction.date | date:'MMM d, y' }}</span>
-                        <span>•</span>
-                        <span class="text-blue-600 font-medium">{{ transaction.category | titlecase }}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-right space-y-1">
-                    <div 
-                      class="text-xl font-bold"
-                      [class]="transaction.amount > 0 ? 'text-green-600' : 'text-red-600'"
-                    >
-                      {{ transaction.amount > 0 ? '+' : '' }}\${{ Math.abs(transaction.amount).toFixed(2) }}
-                    </div>
-                    <div class="text-sm text-gray-500">{{ transaction.date | date:'shortTime' }}</div>
-                  </div>
-                </div>
-              </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
               
               <div *ngIf="transactions.length === 0" class="px-8 py-12 text-center">
                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

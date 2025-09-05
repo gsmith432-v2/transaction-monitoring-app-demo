@@ -189,18 +189,7 @@ import { User } from '../../models/user.model';
                 <tbody class="divide-y divide-gray-200/50">
                   <tr *ngFor="let transaction of transactions" class="hover:bg-gray-50/50 transition-colors duration-200">
                     <td class="px-6 py-4">
-                      <div class="flex items-center space-x-3">
-                        <div 
-                          class="w-8 h-8 rounded-lg flex items-center justify-center shadow-sm"
-                          [class]="transaction.amount > 0 ? 'bg-gradient-to-r from-green-400 to-emerald-500' : 'bg-gradient-to-r from-red-400 to-rose-500'"
-                        >
-                          <svg class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path *ngIf="transaction.amount > 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11l5-5m0 0l5 5m-5-5v12"></path>
-                            <path *ngIf="transaction.amount <= 0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path>
-                          </svg>
-                        </div>
-                        <span class="px-2 py-1 bg-gray-100 rounded-lg font-medium text-sm">{{ transaction.type | titlecase }}</span>
-                      </div>
+                      <span class="px-2 py-1 bg-gray-100 rounded-lg font-medium text-sm">{{ transaction.type | titlecase }}</span>
                     </td>
                     <td class="px-6 py-4">
                       <div class="text-sm font-semibold text-gray-900">{{ transaction.description }}</div>
@@ -227,10 +216,7 @@ import { User } from '../../models/user.model';
               </table>
               
               <div *ngIf="transactions.length === 0" class="px-8 py-12 text-center">
-                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                </svg>
-                <p class="mt-4 text-lg text-gray-500">No transactions found</p>
+                <p class="text-lg text-gray-500">No transactions found</p>
                 <p class="text-sm text-gray-400">Your recent transactions will appear here</p>
               </div>
             </div>
@@ -246,12 +232,7 @@ import { User } from '../../models/user.model';
 
           <!-- Error State -->
           <div *ngIf="errorMessage" class="bg-red-50/80 backdrop-blur-sm border border-red-200 rounded-2xl p-6 shadow-lg">
-            <div class="flex items-center space-x-3">
-              <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <div class="text-red-800 font-medium">{{ errorMessage }}</div>
-            </div>
+            <div class="text-red-800 font-medium">{{ errorMessage }}</div>
           </div>
         </div>
       </main>

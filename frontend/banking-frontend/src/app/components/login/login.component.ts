@@ -10,21 +10,20 @@ import { LoginRequest } from '../../models/user.model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="min-h-screen bg-blue-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div class="absolute inset-0 bg-black opacity-20"></div>
-      <div class="relative max-w-md w-full space-y-8">
-        <!-- Logo and Branding -->
-        <div class="text-center">
-          <h2 class="text-4xl font-bold text-white mb-2">
+    <div class="min-h-screen bg-blue-200 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl w-full space-y-8">
+        <!-- Logo and Branding - Centered in White Box -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+          <h2 class="text-4xl font-bold text-gray-800 mb-2">
             SecureBank
           </h2>
-          <p class="text-blue-200 text-lg">
+          <p class="text-gray-600 text-lg">
             Your trusted financial partner
           </p>
         </div>
 
-        <!-- Login Card -->
-        <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20">
+        <!-- Welcome Back Login Box -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
           <div class="text-center mb-8">
             <h3 class="text-2xl font-semibold text-gray-800 mb-2">Welcome Back</h3>
             <p class="text-gray-600">Sign in to access your account</p>
@@ -71,21 +70,23 @@ import { LoginRequest } from '../../models/user.model';
               <span *ngIf="isLoading">Signing in...</span>
               <span *ngIf="!isLoading">Sign In Securely</span>
             </button>
-
-            <!-- Demo Credentials -->
-            <div class="bg-blue-50 border border-blue-300 rounded-xl p-4">
-              <h4 class="text-sm font-medium text-blue-900">Demo Account</h4>
-              <div class="mt-1 text-sm text-blue-800">
-                <p><strong>Email:</strong> demo@bank.com</p>
-                <p><strong>Password:</strong> password123</p>
-              </div>
-            </div>
           </form>
+        </div>
+
+        <!-- Demo Account Box -->
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <div class="text-center">
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">Demo Account</h4>
+            <div class="text-gray-700">
+              <p class="mb-2"><strong>Email:</strong> demo@bank.com</p>
+              <p><strong>Password:</strong> password123</p>
+            </div>
+          </div>
         </div>
 
         <!-- Footer -->
         <div class="text-center">
-          <p class="text-blue-200 text-sm">
+          <p class="text-gray-700 text-sm">
             Protected by 256-bit SSL encryption
           </p>
         </div>
